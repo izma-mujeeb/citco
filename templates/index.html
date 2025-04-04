@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CITCO Grant and Citation Analysis</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <h1>CITCO Grant and Citation Analysis</h1>
+
+  <form action="/upload" method="post" enctype="multipart/form-data">
+    <label>NSERC DG Data:</label><br/> 
+    <button type="submit">Scrape and Analyze Data</button>
+  </form>
+
+  {% if correlation %}
+    <h2>Correlation: <b>{{ correlation }}</b></h2>
+    <a href="/download_report">Download Report</a>
+    <button onclick="window.location.href='/generate_graph'">Generate Graph</button>
+  {% endif %}
+
+  {% if graph_path %}
+    <h3>Correlation Visualization:</h3>
+    <img src="{{ graph_path }}" alt="Citations vs. Grant Amounts" style="width:600px;">
+  {% endif %}
+</body>
+</html>
